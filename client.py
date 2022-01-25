@@ -1,0 +1,52 @@
+import socket
+
+client = socket.socket()
+client.connect(('localhost',9999)) #can be given any IP address
+msg=client.recv(1024).decode()
+print(msg)
+
+while True:
+	choice = input("1. Create a file\n 2. Delete a file\n 3. Edit a file\n 4. Read a file\n 5. End connection\n Enter a choice: ")
+	
+	if choice == '1':
+		file = input("Enter file name: ")
+		client.send(bytes("1","utf-8"))
+		client.send(bytes(file,"utf-8"))
+		print_msg=client.recv(1024).decode()
+		print(print_msg)
+		print("\n")
+
+	elif choice == "2":
+		file = input("Enter file name: ")
+		client.send(bytes("2","utf-8"))
+		client.send(bytes(file,"utf-8"))
+		print_msg=client.recv(1024).decode()
+		print(print_msg)
+		print("\n")
+
+	elif choice == "3":
+		file = input("Enter file name: ")
+		content = input("Enter the text to be added: ")
+		client.send(bytes("3","utf-8"))
+		client.send(bytes(file,"utf-8"))
+		client.send(bytes(content,"utf-8"))
+		print_msg=client.recv(1024).decode()
+		print(print_msg)
+		print("\n")
+
+	elif choice == "4":
+		file = input("Enter file name: ")
+		client.send(bytes("4","utf-8"))
+		client.send(bytes(file,"utf-8"))
+		print_msg=client.recv(1024).decode()
+		print(print_msg)
+		print("\n")
+
+	elif choice == "5":
+		client.send(bytes("5","utf-8"))
+		print("The connection has been ended.")
+		quit()
+
+	else:
+		print("Invalid choice!")
+
