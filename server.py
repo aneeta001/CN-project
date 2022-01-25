@@ -42,7 +42,10 @@ while True:
 		try:
 			f = open(file,"r")
 			file_content = f.read()
-			client.send(bytes(content,"utf-8"))
+			if file_content == "":
+				client.send(bytes("File is empty.","utf-8"))
+			else:
+				client.send(bytes(file_content,"utf-8"))
 			f.close()
 		except:
 			client.send(bytes("File does not exist.","utf-8"))
