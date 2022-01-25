@@ -8,7 +8,7 @@ print(msg)
 while True:
 	choice = input("1. Create a file\n 2. Delete a file\n 3. Edit a file\n 4. Read a file\n 5. End connection\n Enter a choice: ")
 	
-	if choice == '1':
+	if choice == "1":
 		client.send(bytes("1","utf-8"))
 		file = input("Enter file name: ")
 		client.send(bytes(file,"utf-8"))
